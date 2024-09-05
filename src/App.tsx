@@ -6,7 +6,7 @@ import WeatherCard from "./components/weather-card";
 function App() {
   return (
     <>
-      <div className="flex h-screen w-full items-center justify-center">
+      <div className="flex h-screen w-full items-center justify-center antialiased">
         <div className="flex h-4/6 w-5/6">
           <div className="flex h-full w-1/2 items-center justify-center">
             <div className="h-3/4">

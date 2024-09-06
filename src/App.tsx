@@ -7,18 +7,14 @@ function App() {
   return (
     <>
       <div className="flex h-screen w-full items-center justify-center antialiased">
-        <div className="flex h-4/6 w-5/6">
-          <div className="flex h-full w-1/2 items-center justify-center">
-            <div className="h-3/4">
-              <Header />
-              <SearchBar />
-              <SearchButton />
-            </div>
+        <div className="flex h-2/3 min-h-52 w-2/3">
+          <div className="flex h-full w-1/2 flex-col items-center justify-center p-3">
+            <Header />
+            <SearchBar />
+            <SearchButton />
           </div>
-          <div className="flex h-full w-1/2 items-center justify-center">
-            <div className="flex h-3/4">
-              <WeatherCard />
-            </div>
+          <div className="flex h-full w-1/2 items-center justify-center p-3">
+            <WeatherCard />
           </div>
         </div>
       </div>

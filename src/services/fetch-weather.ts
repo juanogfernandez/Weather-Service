@@ -6,9 +6,12 @@ export async function fetchWeather(location: string) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    const date = moment(data.location.localtime).format("dddd, D MMM");
-    const time = moment(data.location.localtime).format("hh:mm");
+    if (!data.location) {
+      throw new Error();
+    }
 
+    const date = moment(data.location.localtime).format("dddd, D MMM");
+    const time = moment(data.location.localtime).format("HH:mm");
     const locationData = {
       location: data.location.name,
       date: date,
@@ -19,7 +22,6 @@ export async function fetchWeather(location: string) {
     };
     return locationData;
   } catch (error) {
-    console.log(error);
     throw new Error();
   }
 }

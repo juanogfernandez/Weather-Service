@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type Language = "es" | "en";
+
+const initialState: Language = "es";
+
 const languageSlice = createSlice({
   name: "language",
-  initialState: {
-    value: "es",
-  },
+  initialState,
   reducers: {
     switchLanguage: (state, action) => {
-      state.value = action.payload;
+      return action.payload;
     },
   },
 });
 
 export const { switchLanguage } = languageSlice.actions;
+
 export default languageSlice.reducer;

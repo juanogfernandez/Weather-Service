@@ -1,24 +1,30 @@
-import WeatherFragment from "./weather-fragment";
-import TimeFragment from "./time-fragment";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLocation } from "../features/location-slice";
-import { getWeatherData } from "../features/weather-slice";
+import { RootState, AppDispatch } from "@/store";
+import { getWeatherData } from "@/features/weather-slice";
+import WeatherFragment from "@/components/weather-fragment";
+import TimeFragment from "@/components/time-fragment";
+import { setLocation } from "@/features/location-slice";
 
 export default function WeatherCard() {
-  const location = useSelector((state) => state.location.value);
-  const dispatch = useDispatch();
+  const location = useSelector((state: RootState) => state.location);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    async function getCityByIp() {
+    async function getLocationByIp() {
       const ipInfoToken = import.meta.env.VITE_IP_INFO_TOKEN;
       const response = await fetch(
         `https://ipinfo.io/json?token=${ipInfoToken}`,
       );
       const jsonResponse = await response.json();
-      dispatch(setLocation(jsonResponse.city));
+      const city = jsonResponse.city;
+      console.log(city);
+      if (!city) {
+        throw new Error();
+      }
+      dispatch(setLocation(city));
     }
-    getCityByIp();
+    getLocationByIp();
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,10 +1,9 @@
-import Header from "./components/header";
-import SearchBar from "./components/search-bar";
-import SearchButton from "./components/search-button";
-import WeatherCard from "./components/weather-card";
-import store from "./store";
 import { Provider } from "react-redux";
-import { useSelector, useDispatch } from "react-redux";
+import { store } from "@/store";
+import Header from "@/components/header";
+import SearchBar from "@/components/search-bar";
+import SearchButton from "@/components/search-button";
+import WeatherCard from "@/components/weather-card";
 
 function App() {
   return (

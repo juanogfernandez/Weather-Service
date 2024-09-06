@@ -4,7 +4,7 @@ import scaleReducer from "./features/scale-slice";
 import weatherReducer from "./features/weather-slice";
 import locationReducer from "./features/location-slice";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     language: languageReducer,
     scale: scaleReducer,
@@ -12,3 +12,7 @@ export default configureStore({
     location: locationReducer,
   },
 });
+
+export type AppStore = typeof store;
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];

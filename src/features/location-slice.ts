@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState: string = "";
+
 export const locationSlice = createSlice({
   name: "location",
-  initialState: {
-    value: "",
-  },
+  initialState,
   reducers: {
     setLocation: (state, action) => {
-      state.value = action.payload;
+      return action.payload;
     },
   },
 });

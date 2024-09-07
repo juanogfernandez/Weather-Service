@@ -16,8 +16,8 @@ export default function WeatherFragment() {
       </div>
       <p className="h-2/4 text-7xl font-bold">
         {scale == "C"
-          ? weather?.temperatureC + "°C" || "No temp"
-          : weather?.temperatureF + "°F" || "No temp"}
+          ? weather?.temperatureC + "°C" || ""
+          : weather?.temperatureF + "°F" || ""}
       </p>
       <p className="text-l h-1/4">Min 14° / Max 28°</p>
     </div>

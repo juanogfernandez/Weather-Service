@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchWeather } from "@/services/fetch-weather";
+import { fetchWeather } from "@/utils/fetch-weather";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 interface WeatherData {
   condition: string;
   temperatureC: number;
   temperatureF: number;
-  date: string;
-  time: string;
+  datetime: string;
   location: string;
+  feelsLikeC: number;
+  feelsLikeF: number;
+  humidity: number;
+  precipitationsIn: number;
+  precipitationsMm: number;
+  timezone: string;
 }
 
 interface WeatherState {

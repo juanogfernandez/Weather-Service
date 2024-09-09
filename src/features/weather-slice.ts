@@ -3,16 +3,17 @@ import { fetchWeather } from "@/utils/fetch-weather";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 interface WeatherData {
-  condition: string;
+  location: string;
+  datetime: string;
   temperatureC: number;
   temperatureF: number;
-  datetime: string;
-  location: string;
   feelsLikeC: number;
   feelsLikeF: number;
   humidity: number;
   precipitationsIn: number;
   precipitationsMm: number;
+  condition: string;
+  conditionIcon: string;
   timezone: string;
 }
 
@@ -62,18 +63,21 @@ export const { setWeatherData } = weatherSlice.actions;
 
 export const getWeatherData = createAsyncThunk<
   WeatherData,
-  string,
+  { location: string; language: string },
   { rejectValue: string }
->("weather/getWeatherData", async (location, { rejectWithValue }) => {
-  try {
-    const response = await fetchWeather(location);
-    return response;
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue(error.message);
+>(
+  "weather/getWeatherData",
+  async ({ location, language }, { rejectWithValue }) => {
+    try {
+      const response = await fetchWeather(location, language);
+      return response;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("An unexpected error ocurred");
     }
-    return rejectWithValue("An unexpected error ocurred");
-  }
-});
+  },
+);
 
 export default weatherSlice.reducer;

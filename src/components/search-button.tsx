@@ -1,7 +1,9 @@
 import { useDispatch } from "react-redux";
 import { setLocation } from "@/features/location-slice";
+import {useTranslation} from "react-i18next"
 
 export default function SearchButton() {
+  const {t, i18n} = useTranslation()
   const dispatch = useDispatch();
 
   function handleClick() {
@@ -18,7 +20,7 @@ export default function SearchButton() {
         onClick={handleClick}
         className="my-3 ml-1 h-7 w-32 bg-[#1e6ef1] text-xl text-white shadow-[-5px_5px_0px_0px_#3b82f6]"
       >
-        Search
+        {t("search-button")}
       </button>
     </div>
   );

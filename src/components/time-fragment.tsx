@@ -3,6 +3,7 @@ import { RootState } from "@/store";
 import calendar from "@/assets/calendar.svg";
 import { useState, useEffect } from "react";
 import { retrieveFormattedDatetime } from "@/utils/format-datetime";
+
 interface TimeFragmentProps {
   timezone?: string;
 }
@@ -15,18 +16,19 @@ interface TimeData {
 export default function TimeFragment({ timezone }: TimeFragmentProps) {
   const [time, setTime] = useState<TimeData | null>(null);
   const location = useSelector((state: RootState) => state.location);
+  const language = useSelector((state: RootState) => state.language);
 
   useEffect(() => {
     if (timezone) {
-      setTime(retrieveFormattedDatetime(timezone));
+      setTime(retrieveFormattedDatetime(timezone, language));
 
       const interval = setInterval(() => {
-        setTime(retrieveFormattedDatetime(timezone));
+        setTime(retrieveFormattedDatetime(timezone, language));
       }, 1000 * 60);
 
       return () => clearInterval(interval);
     }
-  }, [timezone]);
+  }, [timezone, language]);
 
   return (
     <div className="flex h-full w-auto flex-col items-center justify-center">

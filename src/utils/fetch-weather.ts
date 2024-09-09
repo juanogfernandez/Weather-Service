@@ -1,7 +1,7 @@
-export async function fetchWeather(location: string) {
+export async function fetchWeather(location: string, language: string) {
   console.log("City from fetch", location);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&lang=${language}`;
   try {
     const response = await fetch(url, { cache: "no-cache" });
     const data = await response.json();
@@ -19,6 +19,7 @@ export async function fetchWeather(location: string) {
       precipitationsIn: data.current.precip_in,
       precipitationsMm: data.current.precip_mm,
       condition: data.current.condition.text,
+      conditionIcon: data.current.condition.icon,
       timezone: data.location.tz_id,
     };
     return locationData;

@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import { getWeatherData } from "@/features/weather-slice";
+import { setLocation } from "@/features/location-slice";
 import WeatherFragment from "@/components/weather-fragment";
 import TimeFragment from "@/components/time-fragment";
-import { setLocation } from "@/features/location-slice";
 import WeatherCardSkeleton from "@/utils/weather-card-skeleton";
 
 export default function WeatherCard() {
+  const language = useSelector((state: RootState) => state.language);
   const location = useSelector((state: RootState) => state.location);
   const weather = useSelector((state: RootState) => state.weather.value);
 
@@ -33,8 +34,8 @@ export default function WeatherCard() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (location) {
-      dispatch(getWeatherData(location));
+    if (location && language) {
+      dispatch(getWeatherData({ location, language }));
     }
   }, [location, dispatch]);
 
@@ -42,7 +43,7 @@ export default function WeatherCard() {
     if (location) {
       const interval = setInterval(
         () => {
-          dispatch(getWeatherData(location));
+          dispatch(getWeatherData({ location, language }));
         },
         10000 * 6 * 5,
       );
@@ -55,7 +56,7 @@ export default function WeatherCard() {
   }
 
   return (
-    <div className="flex min-h-60 w-5/6 items-center justify-around rounded-bl-[4700px] rounded-br-full rounded-tl-full rounded-tr-full bg-gradient-to-bl from-[#d0d0f8] via-[#76adbe] to-[#c8d9dc] p-5 shadow-[-3px_3px_2px_1px_#a6a6a6]">
+    <div className="flex min-h-60 w-full items-center justify-around rounded-bl-[4700px] rounded-br-full rounded-tl-full rounded-tr-full bg-gradient-to-bl from-[#e6e6ff] via-[#a8d0e0] to-[#e0ecee] p-5 shadow-[-3px_3px_2px_1px_#a6a6a6]">
       <WeatherFragment />
       <TimeFragment timezone={weather?.timezone} />
     </div>

@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import { getWeatherData } from "@/features/weather-slice";
+import { setLocation } from "@/features/location-slice";
 import WeatherFragment from "@/components/weather-fragment";
 import TimeFragment from "@/components/time-fragment";
-import { setLocation } from "@/features/location-slice";
 import WeatherCardSkeleton from "@/utils/weather-card-skeleton";
 
 export default function WeatherCard() {

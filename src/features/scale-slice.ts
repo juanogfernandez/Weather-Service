@@ -8,12 +8,12 @@ const scaleSlice = createSlice({
   name: "scale",
   initialState,
   reducers: {
-    switchScale: (state, action) => {
+    setScale: (state, action) => {
       return action.payload;
     },
   },
 });
 
-export const { switchScale } = scaleSlice.actions;
+export const { setScale } = scaleSlice.actions;
 
 export default scaleSlice.reducer;

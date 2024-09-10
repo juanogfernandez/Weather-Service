@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchWeather } from "@/utils/fetch-weather";
 import { retrieveTranslation } from "@/utils/retrieve-translation";
+import { AppDispatch } from "@/store";
 
 interface WeatherData {
   location: string;
@@ -53,7 +54,7 @@ export const { setWeatherData, setWeatherLoading, setWeatherError } =
   weatherSlice.actions;
 
 export const getWeatherData =
-  (location: string, language: string) => async (dispatch: any) => {
+  (location: string, language: string) => async (dispatch: AppDispatch) => {
     dispatch(setWeatherLoading());
     try {
       const response = await fetchWeather(location, language);

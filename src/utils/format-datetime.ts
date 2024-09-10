@@ -1,20 +1,32 @@
-import moment from "moment-timezone";
-import "moment/dist/locale/es";
+import { toZonedTime, format } from "date-fns-tz";
+import { enUS, es } from "date-fns/locale";
 
-export function retrieveFormattedDatetime(timezone: string, language: string) {
-  moment.locale(language);
-  const datetime = moment().tz(timezone);
-  let date;
+const localesFromLanguage = {
+  en: enUS,
+  es: es,
+};
+
+type LocaleType = keyof typeof localesFromLanguage;
+
+export function retrieveFormattedDatetime(
+  timezone: string,
+  language: LocaleType,
+) {
+  const date = new Date();
+  const zonedDate = toZonedTime(date, timezone);
+  let formattedDate = format(zonedDate, "d MMM", {
+    locale: localesFromLanguage[language],
+  });
   if (language === "es") {
-    date = datetime.format("D MMM").slice(0, -1);
-    date = date.split(" ");
-    date[1] = date[1].charAt(0).toUpperCase() + date[1].slice(1);
-    date = date.join(" ");
-  } else {
-    date = datetime.format("D MMM");
+    const esFormattedDate = formattedDate.split(" ");
+    esFormattedDate[1] =
+      esFormattedDate[1].charAt(0).toUpperCase() + esFormattedDate[1].slice(1);
+    formattedDate = esFormattedDate.join(" ");
   }
   return {
-    time: datetime.format("HH:mm"),
-    date: date,
+    time: format(zonedDate, "HH:mm", {
+      locale: localesFromLanguage[language],
+    }),
+    date: formattedDate,
   };
 }

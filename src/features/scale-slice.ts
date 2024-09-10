@@ -8,7 +8,7 @@ const scaleSlice = createSlice({
   name: "scale",
   initialState,
   reducers: {
-    setScale: (state, action) => {
+    setScale: (_state, action) => {
       return action.payload;
     },
   },

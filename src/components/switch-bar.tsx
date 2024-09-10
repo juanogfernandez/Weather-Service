@@ -14,7 +14,7 @@ export default function SwitchBar() {
   const location = useSelector((state: RootState) => state.location);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   function switchLanguage() {
     const alternativeLanguage = language === "es" ? "en" : "es";

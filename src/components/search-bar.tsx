@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import SearchIcon from "@/assets/search-solid.svg?react";
+import searchIcon from "@/assets/search-solid.svg";
 
 export default function SearchBar() {
   const [locationSearch, setLocationSearch] = useState("");
-  const {t, i18n} = useTranslation();
+  const { t } = useTranslation();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocationSearch(event.currentTarget.value);
@@ -20,7 +20,10 @@ export default function SearchBar() {
         value={locationSearch}
         onChange={handleChange}
       />
-      <SearchIcon className="color-[#0043af] absolute right-3 top-2 h-6 w-6" />
+      <img
+        src={searchIcon}
+        className="color-[#0043af] absolute right-3 top-2 h-6 w-6"
+      />
     </div>
   );
 }

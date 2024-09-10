@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { setLocation } from "@/features/location-slice";
-import {useTranslation} from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 export default function SearchButton() {
-  const {t, i18n} = useTranslation()
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   function handleClick() {

@@ -17,7 +17,7 @@ export default function WeatherCard() {
   const language = useSelector((state: RootState) => state.language);
   const location = useSelector((state: RootState) => state.location);
   const weather = useSelector((state: RootState) => state.weather);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -48,13 +48,13 @@ export default function WeatherCard() {
       }
       getLocationByIp();
     }
-  }, [dispatch]);
+  }, [location, t, dispatch]);
 
   useEffect(() => {
     if (location.value && language) {
       dispatch(getWeatherData(location.value, language));
     }
-  }, [location, dispatch]);
+  }, [location, language, dispatch]);
 
   useEffect(() => {
     if (location.value) {
@@ -67,7 +67,7 @@ export default function WeatherCard() {
       );
       return () => clearInterval(interval);
     }
-  }, [location, dispatch]);
+  }, [language, location, dispatch]);
 
   if (
     !weather.value ||

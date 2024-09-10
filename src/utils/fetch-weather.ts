@@ -1,13 +1,14 @@
+import { retrieveTranslation } from "@/utils/retrieve-translation";
+
 export async function fetchWeather(location: string, language: string) {
-  console.log("City from fetch", location);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&lang=${language}`;
   try {
     const response = await fetch(url, { cache: "no-cache" });
-    const data = await response.json();
-    if (!data.location) {
-      throw new Error();
+    if (!response.ok) {
+      throw new Error(retrieveTranslation("weather-api-error"));
     }
+    const data = await response.json();
     const locationData = {
       location: data.location.name,
       datetime: data.location.localtime,
@@ -24,6 +25,9 @@ export async function fetchWeather(location: string, language: string) {
     };
     return locationData;
   } catch (error) {
-    throw new Error();
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error(retrieveTranslation("unexpected-error"));
   }
 }

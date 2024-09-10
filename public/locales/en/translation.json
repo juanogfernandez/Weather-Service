@@ -1,5 +1,8 @@
 {
   "header-info": "Check the weather conditions of any location in real time!",
   "search-placeholder": "How is the weather in...",
-  "search-button": "Search"
+  "search-button": "Search",
+  "unexpected-error": "An unexpected error occurred",
+  "location-ip-error": "An error ocurred trying to get location from ip",
+  "weather-api-error": "Failed request to weather API"
 }

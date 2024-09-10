@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchWeather } from "@/utils/fetch-weather";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { retrieveTranslation } from "@/utils/retrieve-translation";
 
 interface WeatherData {
   location: string;
@@ -33,51 +33,40 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    setWeatherData: (state, action) => {
+    setWeatherData: (state, action: PayloadAction<WeatherData>) => {
       state.value = action.payload;
+      state.status = "succeeded";
+      state.error = null;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getWeatherData.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(
-        getWeatherData.fulfilled,
-        (state, action: PayloadAction<WeatherData>) => {
-          state.status = "succeeded";
-          state.value = action.payload;
-        },
-      )
-      .addCase(
-        getWeatherData.rejected,
-        (state, action: PayloadAction<string | unknown>) => {
-          state.status = "failed";
-          state.error = action.payload as string | null;
-        },
-      );
+    setWeatherLoading: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    setWeatherError: (state, action: PayloadAction<string>) => {
+      state.status = "failed";
+      state.error = action.payload;
+    },
   },
 });
 
-export const { setWeatherData } = weatherSlice.actions;
+export const { setWeatherData, setWeatherLoading, setWeatherError } =
+  weatherSlice.actions;
 
-export const getWeatherData = createAsyncThunk<
-  WeatherData,
-  { location: string; language: string },
-  { rejectValue: string }
->(
-  "weather/getWeatherData",
-  async ({ location, language }, { rejectWithValue }) => {
+export const getWeatherData =
+  (location: string, language: string) => async (dispatch: any) => {
+    dispatch(setWeatherLoading());
     try {
       const response = await fetchWeather(location, language);
-      return response;
+      dispatch(setWeatherData(response));
     } catch (error) {
       if (error instanceof Error) {
-        return rejectWithValue(error.message);
+        dispatch(setWeatherError(error.message));
+        throw error;
       }
-      return rejectWithValue("An unexpected error ocurred");
+      const unexpected = retrieveTranslation("unexpected-error");
+      dispatch(setWeatherError(unexpected));
+      throw new Error(unexpected);
     }
-  },
-);
+  };
 
 export default weatherSlice.reducer;

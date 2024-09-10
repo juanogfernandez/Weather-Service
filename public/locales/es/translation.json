@@ -1,5 +1,8 @@
 {
   "header-info": "Consulta el clima de cualquier lugar en tiempo real!",
   "search-placeholder": "Cómo está el tiempo en...",
-  "search-button": "Buscar"
+  "search-button": "Buscar",
+  "unexpected-error": "Ocurrió un error inesperado",
+  "location-ip-error": "Ocurrió un error tratando de obtener la locación por ip",
+  "weather-api-error": "Falló la consulta al servicio del clima"
 }

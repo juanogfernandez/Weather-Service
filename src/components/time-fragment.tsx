@@ -39,7 +39,7 @@ export default function TimeFragment({ timezone }: TimeFragmentProps) {
         </div>
       </div>
       <p className="h-2/4 text-7xl font-bold">{time?.time || ""}</p>
-      <p className="text-l h-1/4">{location || ""}</p>
+      <p className="text-l h-1/4">{location.value}</p>
     </div>
   );
 }

@@ -19,10 +19,10 @@ export default function SwitchBar() {
   function switchLanguage() {
     const alternativeLanguage = language === "es" ? "en" : "es";
     dispatch(setLanguage(alternativeLanguage));
-    dispatch(
-      getWeatherData({ location: location, language: alternativeLanguage }),
-    );
     i18n.changeLanguage(alternativeLanguage);
+    if (location.value) {
+      dispatch(getWeatherData(location.value, alternativeLanguage));
+    }
     //i18n.changeLanguage(alternativeLanguage).then(() => {
     //  localStorage.setItem("i18nextLng", alternativeLanguage);
     //});

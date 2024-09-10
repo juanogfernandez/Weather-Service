@@ -7,3 +7,4 @@ dist/
 *.tmp
 README.md
 Dockerfile
+docker-compose.yml

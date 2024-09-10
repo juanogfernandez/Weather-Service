@@ -1,0 +1,5 @@
+services:
+  weather-service-app:
+    build: .
+    ports: 
+      - "4173:4173"

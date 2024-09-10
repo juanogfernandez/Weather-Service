@@ -8,7 +8,6 @@ import "@/i18n";
 import { useTranslation } from "react-i18next";
 import { getWeatherData } from "@/features/weather-slice";
 
-
 export default function SwitchBar() {
   const scale = useSelector((state: RootState) => state.scale);
   const language = useSelector((state: RootState) => state.language);
@@ -20,8 +19,10 @@ export default function SwitchBar() {
   function switchLanguage() {
     const alternativeLanguage = language === "es" ? "en" : "es";
     dispatch(setLanguage(alternativeLanguage));
-    dispatch(getWeatherData({location: location, language: alternativeLanguage}));
-    i18n.changeLanguage(alternativeLanguage)
+    dispatch(
+      getWeatherData({ location: location, language: alternativeLanguage }),
+    );
+    i18n.changeLanguage(alternativeLanguage);
     //i18n.changeLanguage(alternativeLanguage).then(() => {
     //  localStorage.setItem("i18nextLng", alternativeLanguage);
     //});

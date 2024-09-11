@@ -23,7 +23,7 @@ export default function WeatherFragment() {
 
       <div className="flex w-full items-center justify-center md:hidden">
         <div className="mx-2 flex w-3/5 items-center justify-center">
-          <span className="text-center text-5xl font-bold leading-9">
+          <span className="w-full text-center text-4xl font-bold leading-9">
             {scale == "C"
               ? weather?.temperatureC + "°C"
               : weather?.temperatureF + "°F"}

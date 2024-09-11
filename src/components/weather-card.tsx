@@ -84,7 +84,7 @@ export default function WeatherCard() {
 
   return (
     <>
-      <div className="flex w-5/6 flex-col items-center justify-around rounded-r-3xl rounded-tl-[70px] rounded-tl-lg bg-gradient-to-bl from-[#e6e6ff] via-[#a8d0e0] to-[#e0ecee] p-2 shadow-[-3px_3px_2px_1px_#a6a6a6] md:min-h-60 md:flex-row md:rounded-r-full md:rounded-bl-[4700px] md:rounded-tl-full">
+      <div className="flex w-auto flex-col items-center justify-around rounded-r-2xl rounded-tl-[70px] rounded-tl-lg bg-gradient-to-bl from-[#e6e6ff] via-[#a8d0e0] to-[#e0ecee] p-2 shadow-[-3px_3px_2px_1px_#a6a6a6] md:min-h-60 md:w-5/6 md:flex-row md:rounded-r-full md:rounded-bl-[4700px] md:rounded-tl-full">
         <WeatherFragment />
         <TimeFragment timezone={weather?.value?.timezone} />
       </div>

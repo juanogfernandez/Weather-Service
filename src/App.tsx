@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <div className="flex h-screen w-full flex-col items-center justify-center antialiased">
+        <div className="flex h-full w-full flex-col items-center justify-center antialiased">
           <SwitchBar />
           <div className="flex h-2/3 w-5/6 flex-row flex-col">
             <div className="my-6 flex flex-col items-center justify-center p-1 md:w-1/2">
@@ -18,7 +18,7 @@ function App() {
               <SearchBar />
               <SearchButton />
             </div>
-            <div className="my-6 flex items-center justify-center p-1 md:w-1/2">
+            <div className="my-3 flex items-center justify-center p-1 md:w-1/2">
               <WeatherCard />
             </div>
           </div>

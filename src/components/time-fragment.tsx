@@ -46,29 +46,29 @@ export default function TimeFragment({ timezone }: TimeFragmentProps) {
 
       <div className="flex w-full items-center justify-center md:hidden">
         <div className="mx-2 flex w-3/5 items-center justify-center">
-          <span className="text-center text-4xl font-bold leading-9">
+          <span className="w-full text-center text-4xl font-bold leading-9">
             {time?.time}
           </span>
         </div>
         <div className="mx-2 flex w-2/5 flex-col">
-          <div className="flex flex-col">
-            <div className="text-md my-1 flex">
+          <div className="flex w-full flex-col">
+            <div className="my-1 flex">
               <img
                 className="mx-1 w-5"
                 src={calendar}
                 alt="calendar"
                 width={20}
               />
-              <span className="ml-2">{time?.date}</span>
+              <span className="ml-2 text-sm">{time?.date}</span>
             </div>
-            <div className="text-md my-1 flex">
+            <div className="my-1 flex">
               <img
                 className="mx-1 w-5"
                 src={locationIcon}
                 alt="location"
                 width={20}
               />
-              <span className="ml-2">{location.value}</span>
+              <span className="ml-2 text-sm">{location.value}</span>
             </div>
           </div>
         </div>

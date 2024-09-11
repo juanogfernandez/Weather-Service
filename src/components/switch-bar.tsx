@@ -34,7 +34,7 @@ export default function SwitchBar() {
   }
 
   return (
-    <div className="flex w-5/6 justify-end">
+    <div className="my-2 flex w-5/6 justify-end">
       <div className="w-30 flex justify-around">
         <button
           className="mr-5 flex w-1/2 items-center justify-center"

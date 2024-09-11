@@ -12,13 +12,13 @@ function App() {
       <Provider store={store}>
         <div className="flex h-screen w-full flex-col items-center justify-center antialiased">
           <SwitchBar />
-          <div className="flex h-2/3 min-h-52 w-2/3">
-            <div className="flex h-full w-1/2 flex-col items-center justify-center p-3">
+          <div className="flex h-2/3 w-5/6 flex-row flex-col">
+            <div className="my-6 flex flex-col items-center justify-center p-1 md:w-1/2">
               <Header />
               <SearchBar />
               <SearchButton />
             </div>
-            <div className="flex h-full w-1/2 items-center justify-center p-3">
+            <div className="my-6 flex items-center justify-center p-1 md:w-1/2">
               <WeatherCard />
             </div>
           </div>

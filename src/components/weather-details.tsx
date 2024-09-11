@@ -9,28 +9,28 @@ export default function WeatherDetails() {
   const weather = useSelector((state: RootState) => state.weather.value);
 
   return (
-    <div className="flex flex-col">
-      <div className="md:text-l text-md my-1 flex">
+    <div className="flex h-1/4 w-full flex-col md:my-1 md:h-1/3 md:flex-row md:items-center md:justify-center">
+      <div className="my-2 flex md:items-center md:justify-center">
         <img
-          className="mx-1 w-5"
+          className="mx-1 w-5 md:w-6"
           src={tempFeelsLike}
           alt="feels-like"
           width={20}
         />
-        <span className="ml-2">
+        <span className="ml-1 text-sm md:text-base">
           {scale == "C"
             ? weather?.feelsLikeC + " °C"
             : weather?.feelsLikeF + " °F"}
         </span>
       </div>
-      <div className="md:text-l text-md my-1 flex">
+      <div className="my-2 flex md:ml-2 md:items-center md:justify-center lg:ml-1">
         <img
-          className="mx-1 w-5"
+          className="mx-1 w-5 md:w-6"
           src={precipitations}
           alt="precipitations"
           width={20}
         />
-        <span className="ml-2">
+        <span className="ml-1 text-sm md:text-base">
           {language == "es"
             ? weather?.precipitationsMm + " mm"
             : weather?.precipitationsIn + " In"}

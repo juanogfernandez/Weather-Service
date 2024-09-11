@@ -4,16 +4,14 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center justify-center">
-        <h1 className="my-1 w-auto text-center text-4xl font-bold md:text-7xl">
+      <div className="flex w-full flex-col items-center justify-center lg:items-start lg:justify-start">
+        <h1 className="my-1 w-full text-center text-4xl font-bold md:text-7xl lg:text-left lg:text-[42px] xl:text-5xl">
           Weather Service
         </h1>
         {/* <img></img> */}
-      </div>
-      <div>
-        <p className="flex mb-2 md:mb-3 text-[18px] w-64 text-[#636262] md:text-2xl text-wrap text-center">
+        <span className="mb-2 w-64 text-wrap text-center text-[18px] text-[#636262] md:my-3 md:w-full md:text-2xl lg:w-full lg:text-left lg:text-lg">
           {t("header-info")}
-        </p>
+        </span>
       </div>
     </>
   );

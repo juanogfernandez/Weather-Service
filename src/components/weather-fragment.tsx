@@ -9,27 +9,27 @@ export default function WeatherFragment() {
 
   return (
     <>
-      <div className="hidden h-full w-auto flex-col items-center justify-center md:flex">
+      <div className="hidden h-2/3 w-1/2 flex-col items-center justify-center p-3 md:flex md:p-0 md:pl-1">
         <WeatherStatusIcon />
-        <div className="mb-3 h-2/4 w-full items-center justify-center">
-          <p className="text-center text-7xl font-bold">
-            {scale == "C"
-              ? weather?.temperatureC + "°C"
-              : weather?.temperatureF + "°F"}
-          </p>
-        </div>
-        <WeatherDetails />
-      </div>
-
-      <div className="flex w-full items-center justify-center md:hidden">
-        <div className="mx-2 flex w-3/5 items-center justify-center">
-          <span className="text-center text-5xl font-bold leading-9">
+        <div className="mb-3 flex h-1/3 w-full items-center justify-center md:my-1">
+          <span className="text-center text-5xl font-bold">
             {scale == "C"
               ? weather?.temperatureC + "°C"
               : weather?.temperatureF + "°F"}
           </span>
         </div>
-        <div className="mx-2 flex w-2/5 flex-col">
+        <WeatherDetails />
+      </div>
+
+      <div className="flex w-full items-center justify-center md:hidden">
+        <div className="mx-1 flex w-1/2 items-center justify-center">
+          <span className="w-full text-center text-4xl font-bold leading-9">
+            {scale == "C"
+              ? weather?.temperatureC + "°C"
+              : weather?.temperatureF + "°F"}
+          </span>
+        </div>
+        <div className="mx-1 flex w-1/2 flex-col">
           <WeatherStatusIcon />
           <WeatherDetails />
         </div>

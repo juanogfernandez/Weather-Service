@@ -34,14 +34,14 @@ export default function SwitchBar() {
   }
 
   return (
-    <div className="my-2 flex w-5/6 justify-end">
+    <div className="my-5 flex w-5/6 justify-end">
       <div className="w-30 flex justify-around">
         <button
-          className="mr-5 flex w-1/2 items-center justify-center"
+          className="mr-2 flex w-1/2 items-center justify-center md:mr-5"
           onClick={switchScale}
         >
-          <img className="w-7" src={temperature}></img>
-          <span className="mx-1 text-center text-xl font-semibold text-[#636262]">
+          <img className="w-6 md:w-7" src={temperature}></img>
+          <span className="mx-1 text-center text-lg font-semibold text-[#636262] md:text-xl">
             {scale}
           </span>
         </button>
@@ -49,8 +49,8 @@ export default function SwitchBar() {
           className="flex w-1/2 items-center justify-center"
           onClick={switchLanguage}
         >
-          <img className="w-7" src={translation}></img>
-          <span className="mx-1 text-center text-xl font-semibold uppercase text-[#636262]">
+          <img className="w-6 md:w-7" src={translation}></img>
+          <span className="mx-1 text-center text-lg font-semibold uppercase text-[#636262] md:text-xl">
             {language}
           </span>
         </button>

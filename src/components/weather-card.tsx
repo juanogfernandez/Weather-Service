@@ -14,9 +14,15 @@ import WeatherCardSkeleton from "@/components/weather-card-skeleton";
 import ErrorSpan from "@/components/error";
 
 export default function WeatherCard() {
-  const language = useSelector((state: RootState) => state.language);
-  const location = useSelector((state: RootState) => state.location);
-  const weather = useSelector((state: RootState) => state.weather);
+  const language = useSelector(
+    (state: RootState) => state.language,
+  );
+  const location = useSelector(
+    (state: RootState) => state.location,
+  );
+  const weather = useSelector(
+    (state: RootState) => state.weather,
+  );
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -28,7 +34,9 @@ export default function WeatherCard() {
         try {
           const ipInfoToken = import.meta.env.VITE_IP_INFO_TOKEN;
           const url = `https://ipinfo.io/json?token=${ipInfoToken}`;
-          const response = await fetch(url, { cache: "no-cache" });
+          const response = await fetch(url, {
+            cache: "no-cache",
+          });
           if (!response.ok) {
             throw new Error(t("location-ip-error"));
             //response.status;
@@ -81,7 +89,9 @@ export default function WeatherCard() {
   if (
     !weather.value ||
     !location.value ||
-    [weather.status, location.status].some((status) => status === "loading")
+    [weather.status, location.status].some(
+      (status) => status === "loading",
+    )
   ) {
     return (
       <div className="flex flex-col items-center justify-center">

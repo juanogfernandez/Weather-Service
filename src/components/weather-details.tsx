@@ -4,9 +4,13 @@ import tempFeelsLike from "@/assets/temperature-feels-like.svg";
 import precipitations from "@/assets/rain-water.svg";
 
 export default function WeatherDetails() {
-  const language = useSelector((state: RootState) => state.language);
+  const language = useSelector(
+    (state: RootState) => state.language,
+  );
   const scale = useSelector((state: RootState) => state.scale);
-  const weather = useSelector((state: RootState) => state.weather.value);
+  const weather = useSelector(
+    (state: RootState) => state.weather.value,
+  );
 
   return (
     <div className="flex h-1/4 w-full flex-col md:my-1 md:h-1/3 md:flex-row md:items-center md:justify-center">

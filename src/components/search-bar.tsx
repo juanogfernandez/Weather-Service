@@ -6,7 +6,9 @@ export default function SearchBar() {
   const [locationSearch, setLocationSearch] = useState("");
   const { t } = useTranslation();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setLocationSearch(event.currentTarget.value);
   };
 

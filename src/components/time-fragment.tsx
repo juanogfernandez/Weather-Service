@@ -14,10 +14,16 @@ interface TimeData {
   time: string;
 }
 
-export default function TimeFragment({ timezone }: TimeFragmentProps) {
+export default function TimeFragment({
+  timezone,
+}: TimeFragmentProps) {
   const [time, setTime] = useState<TimeData | null>(null);
-  const location = useSelector((state: RootState) => state.location);
-  const language = useSelector((state: RootState) => state.language);
+  const location = useSelector(
+    (state: RootState) => state.location,
+  );
+  const language = useSelector(
+    (state: RootState) => state.language,
+  );
 
   useEffect(() => {
     if (timezone) {
@@ -48,7 +54,9 @@ export default function TimeFragment({ timezone }: TimeFragmentProps) {
           </div>
         </div>
         <div className="mb-3 flex h-1/3 w-full items-center justify-center md:my-1">
-          <span className="text-center text-5xl font-bold">{time?.time}</span>
+          <span className="text-center text-5xl font-bold">
+            {time?.time}
+          </span>
         </div>
         <div className="flex h-1/3 w-full items-center justify-center">
           <div className="my-1 flex md:items-center md:justify-center">
@@ -58,7 +66,9 @@ export default function TimeFragment({ timezone }: TimeFragmentProps) {
               alt="location"
               width={20}
             />
-            <span className="ml-1 text-base">{location.value}</span>
+            <span className="ml-1 text-base">
+              {location.value}
+            </span>
           </div>
         </div>
       </div>
@@ -87,7 +97,9 @@ export default function TimeFragment({ timezone }: TimeFragmentProps) {
                 alt="location"
                 width={20}
               />
-              <span className="ml-2 text-sm">{location.value}</span>
+              <span className="ml-2 text-sm">
+                {location.value}
+              </span>
             </div>
           </div>
         </div>

@@ -2,7 +2,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
 export default function WeatherStatusIcon() {
-  const weather = useSelector((state: RootState) => state.weather.value);
+  const weather = useSelector(
+    (state: RootState) => state.weather.value,
+  );
 
   return (
     <div className="my-1 flex h-1/4 w-full -space-x-5 md:h-1/3 md:items-center md:justify-center">

@@ -10,8 +10,12 @@ import { getWeatherData } from "@/features/weather-slice";
 
 export default function SwitchBar() {
   const scale = useSelector((state: RootState) => state.scale);
-  const language = useSelector((state: RootState) => state.language);
-  const location = useSelector((state: RootState) => state.location);
+  const language = useSelector(
+    (state: RootState) => state.language,
+  );
+  const location = useSelector(
+    (state: RootState) => state.location,
+  );
 
   const dispatch = useDispatch<AppDispatch>();
   const { i18n } = useTranslation();
@@ -21,7 +25,9 @@ export default function SwitchBar() {
     dispatch(setLanguage(alternativeLanguage));
     i18n.changeLanguage(alternativeLanguage);
     if (location.value) {
-      dispatch(getWeatherData(location.value, alternativeLanguage));
+      dispatch(
+        getWeatherData(location.value, alternativeLanguage),
+      );
     }
     //i18n.changeLanguage(alternativeLanguage).then(() => {
     //  localStorage.setItem("i18nextLng", alternativeLanguage);

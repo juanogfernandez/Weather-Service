@@ -4,7 +4,9 @@ import WeatherDetails from "@/components/weather-details";
 import WeatherStatusIcon from "./weather-status-icon";
 
 export default function WeatherFragment() {
-  const weather = useSelector((state: RootState) => state.weather.value);
+  const weather = useSelector(
+    (state: RootState) => state.weather.value,
+  );
   const scale = useSelector((state: RootState) => state.scale);
 
   return (

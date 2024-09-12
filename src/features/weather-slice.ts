@@ -34,7 +34,10 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    setWeatherData: (state, action: PayloadAction<WeatherData>) => {
+    setWeatherData: (
+      state,
+      action: PayloadAction<WeatherData>,
+    ) => {
       state.value = action.payload;
       state.status = "succeeded";
       state.error = null;
@@ -50,23 +53,28 @@ const weatherSlice = createSlice({
   },
 });
 
-export const { setWeatherData, setWeatherLoading, setWeatherError } =
-  weatherSlice.actions;
+export const {
+  setWeatherData,
+  setWeatherLoading,
+  setWeatherError,
+} = weatherSlice.actions;
 
 export const getWeatherData =
-  (location: string, language: string) => async (dispatch: AppDispatch) => {
+  (location: string, language: string) =>
+  async (dispatch: AppDispatch) => {
     dispatch(setWeatherLoading());
     try {
       const response = await fetchWeather(location, language);
       dispatch(setWeatherData(response));
     } catch (error) {
       if (error instanceof Error) {
-        dispatch(setWeatherError(error.message));
-        throw error;
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : retrieveTranslation("unexpected-error");
+
+        dispatch(setWeatherError(errorMessage));
       }
-      const unexpected = retrieveTranslation("unexpected-error");
-      dispatch(setWeatherError(unexpected));
-      throw new Error(unexpected);
     }
   };
 

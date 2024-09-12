@@ -11,7 +11,7 @@ export default function SearchButton() {
       "location-searchbar",
     ) as HTMLInputElement;
     if (searchBar) {
-      dispatch(setLocation(searchBar?.value));
+      dispatch(setLocation(searchBar?.value.trim()));
     }
   }
   return (

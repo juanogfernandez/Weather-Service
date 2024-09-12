@@ -26,11 +26,11 @@ export default function WeatherCard() {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-
   useEffect(() => {
-    if (!location.value) {
-      dispatch(setLocationLoading());
-      async function getLocationByIp() {
+    const fetchLocationAndWeather = async () => {
+      if (!location.value && !location.error) {
+        dispatch(setLocationLoading());
+
         try {
           const ipInfoToken = import.meta.env.VITE_IP_INFO_TOKEN;
           const url = `https://ipinfo.io/json?token=${ipInfoToken}`;
@@ -39,52 +39,38 @@ export default function WeatherCard() {
           });
           if (!response.ok) {
             throw new Error(t("location-ip-error"));
-            //response.status;
           }
           const jsonResponse = await response.json();
           const city = jsonResponse.city;
           dispatch(setLocation(city));
         } catch (error) {
           if (error instanceof Error) {
+            console.log(error.message);
             dispatch(setLocationError(error.message));
-            throw error;
+          } else {
+            const unexpected = t("unexpected-error");
+            dispatch(setLocationError(unexpected));
           }
-          const unexpected = t("unexpected-error");
-          dispatch(setLocationError(unexpected));
-          throw new Error(unexpected);
         }
       }
-      getLocationByIp();
-    }
-  }, [location, t, dispatch]);
 
-  useEffect(() => {
-    if (location.value && language) {
-      dispatch(getWeatherData(location.value, language));
-    }
-  }, [location, language, dispatch]);
+      if (location.value && language) {
+        dispatch(getWeatherData(location.value, language));
+      }
 
-  useEffect(() => {
-    if (location.value) {
-      const interval = setInterval(
-        () => {
-          console.log("ja");
-          dispatch(getWeatherData(location.value, language));
-        },
-        10000 * 6 * 5,
-      );
-      return () => clearInterval(interval);
-    }
-  }, [language, location, dispatch]);
+      if (location.value) {
+        const interval = setInterval(
+          () => {
+            dispatch(getWeatherData(location.value, language));
+          },
+          10000 * 6 * 5,
+        );
+        return () => clearInterval(interval);
+      }
+    };
 
-  // return (
-  //   <div className="flex w-full flex-col items-center justify-center">
-  //     <WeatherCardSkeleton />
-  //     <div className="flex h-52 w-5/6 flex-col items-center justify-center lg:h-60">
-  //       {weather.error || location.error ? <ErrorSpan /> : null}
-  //     </div>
-  //   </div>
-  // );
+    fetchLocationAndWeather();
+  }, [location.value, location.error, language, dispatch, t]);
 
   if (
     !weather.value ||
@@ -94,7 +80,7 @@ export default function WeatherCard() {
     )
   ) {
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center">
         <WeatherCardSkeleton />
         {weather.error || location.error ? <ErrorSpan /> : null}
       </div>
@@ -103,7 +89,7 @@ export default function WeatherCard() {
 
   return (
     <>
-      <div className="flex h-52 w-5/6 max-w-xs grow flex-col items-center justify-center rounded-bl-lg rounded-br-[70px] rounded-tl-[90px] rounded-tr-2xl bg-gradient-to-bl from-[#e6e6ff] via-[#a8d0e0] to-[#e0ecee] p-2 shadow-[-3px_3px_2px_1px_#a6a6a6] md:w-5/6 md:max-w-md md:flex-row md:rounded-br-[90px] lg:h-60">
+      <div className="flex h-52 w-80 max-w-xs grow flex-col items-center justify-center rounded-bl-lg rounded-br-[70px] rounded-tl-[90px] rounded-tr-2xl bg-gradient-to-bl from-[#e6e6ff] via-[#a8d0e0] to-[#e0ecee] p-2 shadow-[-3px_3px_2px_1px_#a6a6a6] md:max-w-md md:flex-row md:rounded-br-[90px] lg:h-60">
         <WeatherFragment />
         <TimeFragment timezone={weather?.value?.timezone} />
       </div>

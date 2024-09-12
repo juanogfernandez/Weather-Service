@@ -14,7 +14,7 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -t $TAG_LATEST -t $TAG_COMMIT .
+    - docker build --no-cache -t $TAG_LATEST -t $TAG_COMMIT .
     - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
     - docker push $TAG_COMMIT
     - docker push $TAG_LATEST

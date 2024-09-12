@@ -1,6 +1,9 @@
 import { retrieveTranslation } from "@/utils/retrieve-translation";
 
-export async function fetchWeather(location: string, language: string) {
+export async function fetchWeather(
+  location: string,
+  language: string,
+) {
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&lang=${language}`;
   try {
@@ -9,7 +12,7 @@ export async function fetchWeather(location: string, language: string) {
       throw new Error(retrieveTranslation("weather-api-error"));
     }
     const data = await response.json();
-    const locationData = {
+    return {
       location: data.location.name,
       datetime: data.location.localtime,
       temperatureC: data.current.temp_c,
@@ -23,11 +26,11 @@ export async function fetchWeather(location: string, language: string) {
       conditionIcon: data.current.condition.icon,
       timezone: data.location.tz_id,
     };
-    return locationData;
   } catch (error) {
-    if (error instanceof Error) {
-      throw error;
-    }
-    throw new Error(retrieveTranslation("unexpected-error"));
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : retrieveTranslation("unexpected-error"),
+    );
   }
 }

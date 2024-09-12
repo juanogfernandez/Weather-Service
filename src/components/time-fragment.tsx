@@ -97,7 +97,7 @@ export default function TimeFragment({
                 alt="location"
                 width={20}
               />
-              <span className="ml-2 text-sm">
+              <span className="ml-2 text-sm capitalize">
                 {location.value}
               </span>
             </div>

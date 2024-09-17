@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import languageReducer from "./features/language-slice";
-import scaleReducer from "./features/scale-slice";
-import weatherReducer from "./features/weather-slice";
-import locationReducer from "./features/location-slice";
+import languageReducer from "@/store/language-slice";
+import scaleReducer from "@/store/scale-slice";
+import weatherReducer from "@/store/weather-slice";
+import locationReducer from "@/store/location-slice";
 
 export const store = configureStore({
   reducer: {

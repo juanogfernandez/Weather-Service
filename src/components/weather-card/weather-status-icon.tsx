@@ -1,13 +1,10 @@
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { WeatherDataProps } from "./weather-fragment";
 
 // Componente que renderiza icono y estado del clima, tomados de la api
 // Parte del Componente Weather Card
-export default function WeatherStatusIcon() {
-  const weather = useSelector(
-    (state: RootState) => state.weather.value,
-  );
-
+export default function WeatherStatusIcon({
+  weather,
+}: WeatherDataProps) {
   return (
     <div className="my-1 flex h-1/4 w-full items-center -space-x-5 md:h-1/3 md:justify-center">
       <div className="z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white md:h-10 md:w-12">

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchWeather } from "@/utils/fetch-weather";
 import { retrieveTranslation } from "@/utils/retrieve-translation";
-import { AppDispatch } from "@/store";
+import { AppDispatch } from "@/store/store";
 
-interface WeatherData {
+export interface WeatherData {
   location: string;
   datetime: string;
   temperatureC: number;

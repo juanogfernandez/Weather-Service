@@ -1,7 +1,7 @@
-import Header from "@/components/header";
-import SearchBar from "@/components/search-bar";
-import SearchButton from "@/components/search-button";
-import WeatherCard from "@/components/weather-card";
+import Header from "@/components/common/header";
+import SearchBar from "@/components/ui/search-bar";
+import SearchButton from "@/components/ui/search-button";
+import WeatherCard from "@/components/weather-card/weather-card";
 
 export default function WeatherSection() {
   return (

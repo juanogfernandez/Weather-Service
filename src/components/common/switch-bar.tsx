@@ -1,24 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import { RootState, AppDispatch } from "@/store/store";
+import { getWeatherData } from "@/store/weather-slice";
+import { setLanguage } from "@/store/language-slice";
+import { setScale } from "@/store/scale-slice";
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 import temperature from "@/assets/temperature.svg";
 import translation from "@/assets/translation.svg";
-import { setLanguage } from "@/features/language-slice";
-import { setScale } from "@/features/scale-slice";
-import "@/i18n";
-import { useTranslation } from "react-i18next";
-import { getWeatherData } from "@/features/weather-slice";
 
 // Componente que permite cambio de escala y/o lenguaje
 export default function SwitchBar() {
   // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
   // Al existir algún cambio en el estado del store, se re-renderiza.
-  // Se podría sintetizar las variables language, location y scale en una sola utilización del hook, para evitar re-renderizaciones
-  const scale = useSelector((state: RootState) => state.scale);
-  const language = useSelector(
-    (state: RootState) => state.language,
-  );
-  const location = useSelector(
-    (state: RootState) => state.location,
+  const { scale, language, location } = useSelector(
+    (state: RootState) => ({
+      scale: state.scale,
+      language: state.language,
+      location: state.location,
+    }),
   );
 
   const dispatch = useDispatch<AppDispatch>();

@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setLocation } from "@/store/location-slice";
 import { useTranslation } from "react-i18next";
 import searchIcon from "@/assets/search-solid.svg";
-import { useDispatch } from "react-redux";
-import { setLocation } from "@/features/location-slice";
 
 export default function SearchBar() {
   const [locationSearch, setLocationSearch] = useState("");

@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
-import { store } from "@/store";
-import Layout from "@/components/layout";
-import WeatherSection from "@/components/weather-section";
+import { store } from "@/store/store";
+import Layout from "@/components/common/layout";
+import WeatherSection from "@/components/common/weather-section";
 
 function App() {
   return (

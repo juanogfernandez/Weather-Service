@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setLocation } from "@/features/location-slice";
+import { setLocation } from "@/store/location-slice";
 import { useTranslation } from "react-i18next";
 
 // Componente de botón de búsqueda

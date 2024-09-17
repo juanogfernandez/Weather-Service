@@ -1,12 +1,13 @@
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
-import calendar from "@/assets/calendar.svg";
 import { useState, useEffect } from "react";
+import { Language } from "@/store/language-slice";
 import { retrieveFormattedDatetime } from "@/utils/format-datetime";
+import calendar from "@/assets/calendar.svg";
 import locationIcon from "@/assets/location.svg";
 
-interface TimeFragmentProps {
+interface TimeDataProps {
   timezone?: string;
+  location: string;
+  language: Language;
 }
 
 interface TimeData {
@@ -17,18 +18,10 @@ interface TimeData {
 // Componente que es la mitad de la Weather Card, correspondiente a los datos de fecha y hora
 export default function TimeFragment({
   timezone,
-}: TimeFragmentProps) {
+  language,
+  location,
+}: TimeDataProps) {
   const [time, setTime] = useState<TimeData | null>(null);
-  // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
-  // Al existir algún cambio en el estado del store, se re-renderiza.
-  // Se podría sintetizar las variables location y language en una sola utilización del hook, para evitar re-renderizaciones
-  const location = useSelector(
-    (state: RootState) => state.location,
-  );
-  const language = useSelector(
-    (state: RootState) => state.language,
-  );
-
   useEffect(() => {
     // Se genera un reloj en la página, que se actualiza una vez por minuto.
     // No es el tiempo real, sino una aproximación al mismo con una diferencia de segundos.
@@ -74,9 +67,7 @@ export default function TimeFragment({
               alt="location"
               width={20}
             />
-            <span className="ml-1 text-base">
-              {location.value}
-            </span>
+            <span className="ml-1 text-base">{location}</span>
           </div>
         </div>
       </div>
@@ -107,7 +98,7 @@ export default function TimeFragment({
                 width={20}
               />
               <span className="ml-2 text-sm capitalize">
-                {location.value}
+                {location}
               </span>
             </div>
           </div>

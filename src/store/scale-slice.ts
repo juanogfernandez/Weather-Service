@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Scale = "C" | "F";
+export type Scale = "C" | "F";
 
 const initialState: Scale = "C";
 

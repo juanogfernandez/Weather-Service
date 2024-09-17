@@ -1,5 +1,5 @@
-import SwitchBar from "@/components/switch-bar";
 import { ReactNode } from "react";
+import SwitchBar from "@/components/common/switch-bar";
 
 interface LayoutProps {
   children: ReactNode;

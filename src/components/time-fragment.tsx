@@ -14,10 +14,14 @@ interface TimeData {
   time: string;
 }
 
+// Componente que es la mitad de la Weather Card, correspondiente a los datos de fecha y hora
 export default function TimeFragment({
   timezone,
 }: TimeFragmentProps) {
   const [time, setTime] = useState<TimeData | null>(null);
+  // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
+  // Al existir algún cambio en el estado del store, se re-renderiza.
+  // Se podría sintetizar las variables location y language en una sola utilización del hook, para evitar re-renderizaciones
   const location = useSelector(
     (state: RootState) => state.location,
   );
@@ -26,6 +30,9 @@ export default function TimeFragment({
   );
 
   useEffect(() => {
+    // Se genera un reloj en la página, que se actualiza una vez por minuto.
+    // No es el tiempo real, sino una aproximación al mismo con una diferencia de segundos.
+    // Solución elegida para tener tiempo real, ya que la api no actualiza datos horarios por minutos, sino en una ventana temporal más grande.
     if (timezone) {
       setTime(retrieveFormattedDatetime(timezone, language));
 
@@ -39,6 +46,7 @@ export default function TimeFragment({
 
   return (
     <>
+      {/* UI para screen medium en adelante*/}
       <div className="hidden h-2/3 w-1/2 flex-col items-center justify-center p-3 md:flex md:p-0 md:pr-1">
         <div className="my-1 flex h-1/3 w-full items-center justify-center">
           <div className="flex items-center justify-center">
@@ -73,6 +81,7 @@ export default function TimeFragment({
         </div>
       </div>
 
+      {/* UI para screen small*/}
       <div className="flex w-full items-start justify-center md:hidden">
         <div className="mx-1 flex w-1/2 items-center justify-center">
           <span className="w-full text-center text-4xl font-bold leading-9">

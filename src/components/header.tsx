@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+
+// Componente que contiene título y bajada
 export default function Header() {
   const { t } = useTranslation();
 
@@ -10,6 +12,7 @@ export default function Header() {
         </h1>
         {/* <img></img> */}
         <span className="mb-2 w-64 text-wrap text-center text-[18px] text-[#636262] md:my-3 md:w-full md:text-2xl lg:w-full lg:text-left lg:text-lg">
+          {/* Traducción de bajada */}
           {t("header-info")}
         </span>
       </div>

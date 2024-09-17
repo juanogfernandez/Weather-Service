@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Se evitar subir al repositorio valor de variables de entorno, se deja un archivo .env de ejemplo
+.env

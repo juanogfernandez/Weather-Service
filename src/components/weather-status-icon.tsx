@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
+// Componente que renderiza icono y estado del clima, tomados de la api
+// Parte del Componente Weather Card
 export default function WeatherStatusIcon() {
   const weather = useSelector(
     (state: RootState) => state.weather.value,
@@ -17,6 +19,7 @@ export default function WeatherStatusIcon() {
         />
       </div>
       <div className="z-0 flex h-auto w-auto items-center justify-center rounded-2xl bg-gradient-to-tl from-red-300 via-red-200 to-red-200 pl-6 pr-2 shadow-sm md:min-h-8 lg:w-32">
+        {/* Tamaño del texto variable según longitud de string */}
         <span
           className={`text-wrap text-left font-medium ${
             weather?.condition

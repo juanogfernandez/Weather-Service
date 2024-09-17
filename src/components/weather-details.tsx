@@ -4,6 +4,9 @@ import tempFeelsLike from "@/assets/temperature-feels-like.svg";
 import precipitations from "@/assets/rain-water.svg";
 
 export default function WeatherDetails() {
+  // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
+  // Al existir algún cambio en el estado del store, se re-renderiza.
+  // Se podría sintetizar las variables weather, scale, language en una sola utilización del hook, para evitar re-renderizaciones
   const language = useSelector(
     (state: RootState) => state.language,
   );

@@ -1,6 +1,11 @@
 import { toZonedTime, format } from "date-fns-tz";
 import { enUS, es } from "date-fns/locale";
 
+/*
+Esta función devuelve el fecha y hora en el formato adecuado según el idioma y la zona horaria.
+Se utilizó primeramente la librería moment.js pero era pesada para el build sumado a que importaba la información de todos los timezones, a pesar de querer importar únicamente los necesarios.
+ */
+
 const localesFromLanguage = {
   en: enUS,
   es: es,
@@ -17,10 +22,13 @@ export function retrieveFormattedDatetime(
   let formattedDate = format(zonedDate, "d MMM", {
     locale: localesFromLanguage[language],
   });
+  // Según la mayoría de las librerías, el formato de fecha para el timezone de Argentina es sin mayúscula.
+  // Se agrega mayúscula al mes, solo con fines estéticos.
   if (language === "es") {
     const esFormattedDate = formattedDate.split(" ");
     esFormattedDate[1] =
-      esFormattedDate[1].charAt(0).toUpperCase() + esFormattedDate[1].slice(1);
+      esFormattedDate[1].charAt(0).toUpperCase() +
+      esFormattedDate[1].slice(1);
     formattedDate = esFormattedDate.join(" ");
   }
   return {

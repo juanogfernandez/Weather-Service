@@ -8,7 +8,11 @@ import "@/i18n";
 import { useTranslation } from "react-i18next";
 import { getWeatherData } from "@/features/weather-slice";
 
+// Componente que permite cambio de escala y/o lenguaje
 export default function SwitchBar() {
+  // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
+  // Al existir algún cambio en el estado del store, se re-renderiza.
+  // Se podría sintetizar las variables language, location y scale en una sola utilización del hook, para evitar re-renderizaciones
   const scale = useSelector((state: RootState) => state.scale);
   const language = useSelector(
     (state: RootState) => state.language,
@@ -20,10 +24,17 @@ export default function SwitchBar() {
   const dispatch = useDispatch<AppDispatch>();
   const { i18n } = useTranslation();
 
+  // Función que hace switch a lenguaje alternativo
   function switchLanguage() {
     const alternativeLanguage = language === "es" ? "en" : "es";
     dispatch(setLanguage(alternativeLanguage));
     i18n.changeLanguage(alternativeLanguage);
+
+    /* 
+    Cambio de lenguaje vuelve a realizar consulta a api de clima,
+    para traer leyenda de condición climática en idioma requerido
+    y delegar esa leyenda en la api, en lugar de traducir cada leyenda
+    */
     if (location.value) {
       dispatch(
         getWeatherData(location.value, alternativeLanguage),
@@ -34,6 +45,7 @@ export default function SwitchBar() {
     //});
   }
 
+  // Función que hace switch a escala alternativa
   function switchScale() {
     const alternativeScale = scale === "C" ? "F" : "C";
     dispatch(setScale(alternativeScale));

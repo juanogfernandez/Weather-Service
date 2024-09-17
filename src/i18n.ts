@@ -10,11 +10,15 @@ i18next
   .init({
     fallbackLng: "es",
     lng: "es",
+    preload: ["en", "es"],
     supportedLngs: ["es", "en"],
     detection: {
       order: ["localStorage", "cookie", "navigator"],
       lookupLocalStorage: "i18nextLng",
       caches: ["localStorage"],
+    },
+    cache: {
+      enabled: true,
     },
     backend: {
       loadPath: "/locales/{{lng}}/translation.json",

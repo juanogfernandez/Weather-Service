@@ -1,7 +1,11 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
+// Componente que renderiza errores
 export default function ErrorSpan() {
+  // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
+  // Al existir algún cambio en el estado del store, se re-renderiza.
+  // Se podría sintetizar las variables location y weather en una sola utilización del hook, para evitar re-renderizaciones
   const location = useSelector(
     (state: RootState) => state.location,
   );

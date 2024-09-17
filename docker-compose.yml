@@ -1,3 +1,6 @@
+# Docker compose que levanta aplicación
+# Levanta una contenedor de nginx (como servidor web) que tiene copiados archivos estáticos, compilados y minificados de la app
+# Se expone puerto 80 de nginx
 services:
   weather-service-app:
     build:

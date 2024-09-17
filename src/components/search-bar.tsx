@@ -9,12 +9,14 @@ export default function SearchBar() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  // Función que maneja el cambio de estado local de locación del componente
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setLocationSearch(event.currentTarget.value);
   };
 
+  // Función que envía cambio de locación al store al apretar enter
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
   ) => {
@@ -29,6 +31,7 @@ export default function SearchBar() {
         <input
           className="my-2 h-7 min-w-64 max-w-full grow rounded-full border border-[#a6a6a6] p-3 text-lg text-[#636262] shadow-[0px_3px_0px_0px_#d9d9d9] focus:border-2 focus:border-stone-500 focus:outline-none md:h-9 md:w-full md:text-xl lg:w-52 lg:text-lg"
           type="text"
+          // Traducción de placeholder
           placeholder={t("search-placeholder")}
           id="location-searchbar"
           value={locationSearch}

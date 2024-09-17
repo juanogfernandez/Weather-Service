@@ -30,10 +30,14 @@ const initialState: WeatherState = {
   status: "idle",
 };
 
+// Slice de redux que permite manejar el estado del clima del store global de la app
+// Al involucrar respuesta de api, se agrega error y estado de la consulta además del valor del estado
+// Se inicializa en valores vacíos y estáticos
 const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
+    // Se define acción de modificación del estado en general, basado en el payload de la acción según el caso
     setWeatherData: (
       state,
       action: PayloadAction<WeatherData>,
@@ -53,12 +57,7 @@ const weatherSlice = createSlice({
   },
 });
 
-export const {
-  setWeatherData,
-  setWeatherLoading,
-  setWeatherError,
-} = weatherSlice.actions;
-
+// Función asíncrona thunk de Redux, encargada de realizar la consulta a api del clima, antes de actualizar el estado del clima
 export const getWeatherData =
   (location: string, language: string) =>
   async (dispatch: AppDispatch) => {
@@ -77,5 +76,11 @@ export const getWeatherData =
       }
     }
   };
+
+export const {
+  setWeatherData,
+  setWeatherLoading,
+  setWeatherError,
+} = weatherSlice.actions;
 
 export default weatherSlice.reducer;

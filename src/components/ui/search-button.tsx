@@ -2,8 +2,15 @@ import { useDispatch } from "react-redux";
 import { setLocation } from "@/store/location-slice";
 import { useTranslation } from "react-i18next";
 
+type SearchButtonProps = {
+  setLocationSearch: React.Dispatch<
+    React.SetStateAction<string>
+  >;
+};
 // Componente de botón de búsqueda
-export default function SearchButton() {
+export default function SearchButton({
+  setLocationSearch,
+}: SearchButtonProps) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -14,6 +21,7 @@ export default function SearchButton() {
     ) as HTMLInputElement;
     if (searchBar) {
       dispatch(setLocation(searchBar?.value.trim()));
+      setLocationSearch("");
     }
   }
   return (

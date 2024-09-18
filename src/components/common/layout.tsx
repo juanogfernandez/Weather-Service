@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import SwitchBar from "@/components/common/switch-bar";
 
-interface LayoutProps {
+type LayoutProps = {
   children: ReactNode;
-}
+};
 
 // Layout de app
 export default function Layout({ children }: LayoutProps) {

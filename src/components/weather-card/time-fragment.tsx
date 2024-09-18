@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import { memo } from "react";
 import { Language } from "@/store/language-slice";
 import { retrieveFormattedDatetime } from "@/utils/format-datetime";
-import { capitalize } from "@/utils/capitalize";
 
-interface TimeDataProps {
+type TimeDataProps = {
   timezone?: string;
   location: string;
   language: Language;
-}
+};
 
-interface TimeData {
+type TimeData = {
   date: string;
   time: string;
-}
+};
 
 // Componente que es la mitad de la Weather Card, correspondiente a los datos de fecha y hora
 const TimeFragment = memo(
@@ -66,7 +65,9 @@ const TimeFragment = memo(
                 alt="location"
                 width={20}
               />
-              <span className="ml-1 text-base">{location}</span>
+              <span className="ml-1 text-base capitalize">
+                {location}
+              </span>
             </div>
           </div>
         </div>
@@ -99,7 +100,7 @@ const TimeFragment = memo(
                   width={20}
                 />
                 <span className="ml-2 text-sm capitalize">
-                  {capitalize(location)}
+                  {location}
                 </span>
               </div>
             </div>

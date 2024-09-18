@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import Layout from "@/components/common/layout";
-import WeatherSection from "@/components/common/weather-section";
+import MainSection from "@/components/common/main-section";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       {/*  Store de Redux como contexto para toda la app*/}
       <Provider store={store}>
         <Layout>
-          <WeatherSection />
+          <MainSection />
         </Layout>
       </Provider>
     </>

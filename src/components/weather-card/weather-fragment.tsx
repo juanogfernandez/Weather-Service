@@ -5,11 +5,11 @@ import { WeatherData } from "@/store/weather-slice";
 import WeatherDetails from "@/components/weather-card/weather-details";
 import WeatherStatusIcon from "@/components/weather-card/weather-status-icon";
 
-export interface WeatherDataProps {
+export type WeatherDataProps = {
   language?: Language;
   scale?: Scale;
   weather: WeatherData;
-}
+};
 
 // Componente que es la mitad de la Weather Card, correspondiente a los datos del clima
 // Renderiza la temperatura y dos componentes pequeños, que representan detalles del clima e icono y leyenda de condición climática

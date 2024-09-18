@@ -1,6 +1,6 @@
-interface ErrorSpanProps {
+type ErrorSpanProps = {
   message?: string | null;
-}
+};
 
 // Componente que renderiza errores
 export default function ErrorSpan({ message }: ErrorSpanProps) {

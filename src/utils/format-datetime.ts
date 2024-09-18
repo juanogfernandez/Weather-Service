@@ -1,5 +1,6 @@
 import { toZonedTime, format } from "date-fns-tz";
 import { enUS, es } from "date-fns/locale";
+import { capitalize } from "@/utils/capitalize";
 
 /*
 Esta función devuelve el fecha y hora en el formato adecuado según el idioma y la zona horaria.
@@ -26,9 +27,7 @@ export function retrieveFormattedDatetime(
   // Se agrega mayúscula al mes, solo con fines estéticos.
   if (language === "es") {
     const esFormattedDate = formattedDate.split(" ");
-    esFormattedDate[1] =
-      esFormattedDate[1].charAt(0).toUpperCase() +
-      esFormattedDate[1].slice(1);
+    esFormattedDate[1] = capitalize(esFormattedDate[1]);
     formattedDate = esFormattedDate.join(" ");
   }
   return {

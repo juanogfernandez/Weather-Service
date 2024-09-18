@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface LocationState {
+export interface LocationState {
   value: string;
   error: string | null;
   status: "idle" | "loading" | "succeeded" | "failed";

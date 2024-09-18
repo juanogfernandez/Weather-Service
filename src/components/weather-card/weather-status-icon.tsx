@@ -1,4 +1,4 @@
-import { WeatherDataProps } from "./weather-fragment";
+import { WeatherDataProps } from "@/components/weather-card/weather-fragment";
 
 // Componente que renderiza icono y estado del clima, tomados de la api
 // Parte del Componente Weather Card
@@ -6,10 +6,10 @@ export default function WeatherStatusIcon({
   weather,
 }: WeatherDataProps) {
   return (
-    <div className="my-1 flex h-1/4 w-full items-center -space-x-5 md:h-1/3 md:justify-center">
-      <div className="z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white md:h-10 md:w-12">
+    <div className="my-1 flex w-full items-center -space-x-5 animatecss animatecss-fadeIn md:h-12 md:justify-center">
+      <div className="z-10 flex w-8 items-center justify-center rounded-full bg-white md:h-10 md:w-12">
         <img
-          className="z-20 w-8"
+          className="z-20 w-8 transition duration-200 ease-in hover:scale-150"
           src={weather?.conditionIcon}
           alt="condition"
           width={20}

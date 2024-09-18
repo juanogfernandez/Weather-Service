@@ -20,7 +20,7 @@ export default function SearchButton() {
     <div className="flex w-full items-center justify-center lg:items-start lg:justify-start">
       <button
         onClick={handleClick}
-        className="mb-1 ml-1 mt-3 h-7 w-32 bg-[#1e6ef1] text-lg text-white shadow-[-5px_5px_0px_0px_#3b82f6] md:my-3 md:text-xl lg:ml-3"
+        className="delay-50 mb-1 ml-1 mt-3 h-7 w-32 cursor-pointer bg-[#1e6ef1] text-lg text-white shadow-[-5px_5px_0px_0px_#3b82f6] transition duration-100 ease-in animatecss animatecss-delay-2s animatecss-fadeInLeft hover:translate-x-1 hover:scale-110 md:my-3 md:text-xl lg:ml-3"
       >
         {/* Traducción de contenido de botón*/}
         {t("search-button")}

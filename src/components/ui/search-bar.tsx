@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setLocation } from "@/store/location-slice";
 import { useTranslation } from "react-i18next";
-import searchIcon from "@/assets/search-solid.svg";
 
 export default function SearchBar() {
   const [locationSearch, setLocationSearch] = useState("");
@@ -25,11 +24,15 @@ export default function SearchBar() {
     }
   };
 
+  const handleClick = () => {
+    dispatch(setLocation(locationSearch.trim()));
+  };
+
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="relative flex max-w-sm grow items-center justify-center md:max-w-lg lg:max-w-full">
+      <div className="animatecss animatecss-fadeInLeft animatecss-delay-2s relative flex max-w-sm grow items-center justify-center md:max-w-lg lg:max-w-full">
         <input
-          className="my-2 h-7 min-w-64 max-w-full grow rounded-full border border-[#a6a6a6] p-3 text-lg text-[#636262] shadow-[0px_3px_0px_0px_#d9d9d9] focus:border-2 focus:border-stone-500 focus:outline-none md:h-9 md:w-full md:text-xl lg:w-52 lg:text-lg"
+          className="my-2 h-7 min-w-64 max-w-full grow rounded-full border border-[#a6a6a6] p-3 text-lg text-[#636262] shadow-[0px_3px_0px_0px_#d9d9d9] focus:border-2 focus:border-stone-500 focus:outline-none md:h-9 md:w-full md:text-lg lg:w-52"
           type="text"
           // Traducción de placeholder
           placeholder={t("search-placeholder")}
@@ -39,8 +42,9 @@ export default function SearchBar() {
           onKeyDown={handleKeyDown}
         />
         <img
-          src={searchIcon}
-          className="absolute right-3 top-3 h-5 md:h-6 md:w-6 lg:top-4"
+          src="/assets/search-solid.svg"
+          className="rotate-animation absolute right-3 top-3 h-5 cursor-pointer hover:scale-110 md:h-6 md:w-6 lg:top-3"
+          onClick={handleClick}
         />
       </div>
     </div>

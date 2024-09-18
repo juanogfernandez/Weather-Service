@@ -1,23 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 import { getWeatherData } from "@/store/weather-slice";
 import { setLanguage } from "@/store/language-slice";
 import { setScale } from "@/store/scale-slice";
 import { useTranslation } from "react-i18next";
 import "@/utils/i18n";
-import temperature from "@/assets/temperature.svg";
-import translation from "@/assets/translation.svg";
-
+import { selectSwitchBarData } from "@/store/selector";
 // Componente que permite cambio de escala y/o lenguaje
 export default function SwitchBar() {
   // Suscripción al store de Redux utilizando el hook useSelector de React-Redux
   // Al existir algún cambio en el estado del store, se re-renderiza.
   const { scale, language, location } = useSelector(
-    (state: RootState) => ({
-      scale: state.scale,
-      language: state.language,
-      location: state.location,
-    }),
+    selectSwitchBarData,
   );
 
   const dispatch = useDispatch<AppDispatch>();
@@ -51,22 +45,28 @@ export default function SwitchBar() {
   }
 
   return (
-    <div className="my-3 flex w-5/6 justify-end">
+    <div className="my-3 flex w-5/6 justify-end animatecss animatecss-delay-2s animatecss-slideInRight">
       <div className="w-30 flex justify-around">
         <button
-          className="mr-2 flex w-1/2 items-center justify-center md:mr-5"
+          className="mr-2 flex w-1/2 items-center justify-center transition duration-200 hover:scale-110 md:mr-5"
           onClick={switchScale}
         >
-          <img className="w-6 md:w-7" src={temperature}></img>
+          <img
+            className="w-6 md:w-7"
+            src="/assets/temperature.svg"
+          ></img>
           <span className="mx-1 text-center text-lg font-semibold text-[#636262] md:text-xl">
             {scale}
           </span>
         </button>
         <button
-          className="flex w-1/2 items-center justify-center"
+          className="flex w-1/2 items-center justify-center transition duration-200 hover:scale-110"
           onClick={switchLanguage}
         >
-          <img className="w-6 md:w-7" src={translation}></img>
+          <img
+            className="w-6 md:w-7"
+            src="/assets/translation.svg"
+          ></img>
           <span className="mx-1 text-center text-lg font-semibold uppercase text-[#636262] md:text-xl">
             {language}
           </span>

@@ -1,6 +1,4 @@
-import { WeatherDataProps } from "./weather-fragment";
-import tempFeelsLike from "@/assets/temperature-feels-like.svg";
-import precipitations from "@/assets/rain-water.svg";
+import { WeatherDataProps } from "@/components/weather-card/weather-fragment";
 
 export default function WeatherDetails({
   language,
@@ -8,11 +6,11 @@ export default function WeatherDetails({
   weather,
 }: WeatherDataProps) {
   return (
-    <div className="flex h-1/4 w-full flex-col md:my-1 md:h-1/3 md:flex-row md:items-center md:justify-center">
-      <div className="my-2 flex md:items-center md:justify-center">
+    <div className="flex w-full flex-col justify-around md:my-1 md:h-12 md:flex-row md:items-center">
+      <div className="my-2 flex animatecss animatecss-fadeIn md:items-center md:justify-center">
         <img
           className="mx-1 w-5 md:w-6"
-          src={tempFeelsLike}
+          src="/assets/temperature-feels-like.svg"
           alt="feels-like"
           width={20}
         />
@@ -22,10 +20,10 @@ export default function WeatherDetails({
             : weather?.feelsLikeF + " °F"}
         </span>
       </div>
-      <div className="my-2 flex md:ml-2 md:items-center md:justify-center lg:ml-1">
+      <div className="my-2 flex animatecss animatecss-fadeIn md:ml-2 md:items-center md:justify-center lg:ml-1">
         <img
           className="mx-1 w-5 md:w-6"
-          src={precipitations}
+          src="/assets/rain-water.svg"
           alt="precipitations"
           width={20}
         />

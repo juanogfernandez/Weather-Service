@@ -30,7 +30,7 @@ export default function SearchBar() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="animatecss animatecss-fadeInLeft animatecss-delay-2s relative flex max-w-sm grow items-center justify-center md:max-w-lg lg:max-w-full">
+      <div className="relative flex max-w-sm grow items-center justify-center animatecss animatecss-delay-2s animatecss-fadeInLeft md:max-w-lg lg:max-w-full">
         <input
           className="my-2 h-7 min-w-64 max-w-full grow rounded-full border border-[#a6a6a6] p-3 text-lg text-[#636262] shadow-[0px_3px_0px_0px_#d9d9d9] focus:border-2 focus:border-stone-500 focus:outline-none md:h-9 md:w-full md:text-lg lg:w-52"
           type="text"
